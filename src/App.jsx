@@ -7,6 +7,7 @@ import "./App.css";
 function App() {
   const [cards, setCards] = useState([]);
   const [clickedIds, setClickedIds] = useState([]);
+  const [bestScore, setBestScore] = useState(0);
 
   useEffect(() => {
     const promises = [];
@@ -33,7 +34,16 @@ function App() {
   }, []);
 
   function handleClick(id) {
-    console.log(id);
+    if (clickedIds.includes(id)) {
+      setClickedIds([]);
+    } else {
+      const updatedIds = [...clickedIds, id];
+
+      setClickedIds(updatedIds);
+      if (updatedIds.length > bestScore) {
+        setBestScore(updatedIds.length);
+      }
+    }
   }
 
   const cardElements = cards.map((item) => (
@@ -45,7 +55,12 @@ function App() {
     />
   ));
 
-  return <main className="cards-container">{cardElements}</main>;
+  return (
+    <main className="cards-container">
+      {cardElements} <p>{clickedIds.length}</p>
+      <p>{bestScore}</p>
+    </main>
+  );
 }
 
 export default App;
