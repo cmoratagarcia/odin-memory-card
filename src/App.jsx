@@ -28,7 +28,7 @@ function App() {
           image: pokemon.sprites.other.home.front_default,
         }));
 
-        setCards(pokemonCards);
+        setCards(shuffle(pokemonCards));
       })
       .catch((error) => console.log(error));
   }, []);
@@ -44,6 +44,7 @@ function App() {
         setBestScore(updatedIds.length);
       }
     }
+    setCards(shuffle(cards));
   }
 
   const cardElements = cards.map((item) => (
@@ -63,4 +64,14 @@ function App() {
   );
 }
 
+function shuffle(array) {
+  const copy = [...array];
+
+  for (let i = copy.length - 1; i >= 1; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
 export default App;
