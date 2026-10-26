@@ -18,8 +18,15 @@ function App() {
         // Return a Promise that resolves with all parsed JSON data
         return Promise.all(responses.map((item) => item.json()));
       })
-      .then((data) => console.log(data))
+      .then((data) => {
+        const pokemonCards = data.map((pokemon) => ({
+          id: pokemon.id,
+          name: pokemon.name,
+          image: pokemon.sprites.other.home.front_default,
+        }));
 
+        setCards(pokemonCards);
+      })
       .catch((error) => console.log(error));
   }, []);
 
