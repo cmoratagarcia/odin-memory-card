@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import Card from "./Card";
-
+import Scoreboard from "./Scoreboard";
 import "./App.css";
 
 function App() {
@@ -57,9 +57,14 @@ function App() {
   ));
 
   return (
-    <main className="cards-container">
-      {cardElements} <p>{clickedIds.length}</p>
-      <p>{bestScore}</p>
+    <main className="game">
+      <header className="game-header">
+        <h1>Pokémon Memory Game</h1>
+        <p>Instructions...</p>
+
+        <Scoreboard currentScore={clickedIds.length} bestScore={bestScore} />
+      </header>
+      <section className="cards-container">{cardElements}</section>;
     </main>
   );
 }
