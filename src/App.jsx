@@ -6,6 +6,7 @@ import "./App.css";
 
 function App() {
   const [cards, setCards] = useState([]);
+  const [clickedIds, setClickedIds] = useState([]);
 
   useEffect(() => {
     const promises = [];
@@ -31,8 +32,17 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
+  function handleClick(id) {
+    console.log(id);
+  }
+
   const cardElements = cards.map((item) => (
-    <Card key={item.id} name={item.name} image={item.image} />
+    <Card
+      key={item.id}
+      name={item.name}
+      image={item.image}
+      handleClick={() => handleClick(item.id)}
+    />
   ));
 
   return <main className="cards-container">{cardElements}</main>;
