@@ -64,7 +64,7 @@ function App() {
 
         <Scoreboard currentScore={clickedIds.length} bestScore={bestScore} />
       </header>
-      <section className="cards-container">{cardElements}</section>;
+      <section className="cards-container">{cardElements}</section>
     </main>
   );
 }
