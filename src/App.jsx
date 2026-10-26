@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import Card from "./Card";
 
 import "./App.css";
 
@@ -30,11 +31,11 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
-  return (
-    <>
-      <p>{cards.length}</p>
-    </>
-  );
+  const cardElements = cards.map((item) => (
+    <Card key={item.id} name={item.name} image={item.image} />
+  ));
+
+  return <main className="cards-container">{cardElements}</main>;
 }
 
 export default App;
