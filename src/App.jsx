@@ -4,6 +4,8 @@ import Card from "./Card";
 import Scoreboard from "./Scoreboard";
 import "./App.css";
 
+const CARD_COUNT = 12;
+
 function App() {
   const [cards, setCards] = useState([]);
   const [clickedIds, setClickedIds] = useState([]);
@@ -12,7 +14,7 @@ function App() {
   useEffect(() => {
     const promises = [];
 
-    for (let i = 1; i < 13; i++) {
+    for (let i = 1; i <= CARD_COUNT; i++) {
       promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`));
     }
 
