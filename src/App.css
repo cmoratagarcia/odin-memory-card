@@ -191,3 +191,51 @@ body {
     border-radius: 14px;
   }
 }
+/* Win dialog */
+.win-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 40px;
+  border: 1px solid #494065;
+  border-radius: 18px;
+  background: #27213d;
+  color: #f8f5ff;
+  text-align: center;
+  box-shadow: 0 0 0 100vmax rgb(0 0 0 / 65%);
+}
+
+.win-dialog h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #f7c948;
+}
+
+.play-again {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: #f7c948;
+  color: #171329;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.play-again:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 25%);
+}
+
+.play-again:focus-visible {
+  outline: 3px solid #f7c948;
+  outline-offset: 4px;
+}

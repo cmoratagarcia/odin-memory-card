@@ -86,8 +86,11 @@ function App() {
         <section className="cards-container">{cardElements}</section>
       </main>
       {hasWon && (
-        <dialog open>
-          You won!<button onClick={handlePlayAgain}>Play Again!</button>
+        <dialog open className="win-dialog">
+          <h2>You won!</h2>
+          <button className="play-again" onClick={handlePlayAgain}>
+            Play again
+          </button>
         </dialog>
       )}
     </>
