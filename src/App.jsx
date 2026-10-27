@@ -59,8 +59,10 @@ function App() {
   return (
     <main className="game">
       <header className="game-header">
-        <h1>Pokémon Memory Game</h1>
-        <p>Instructions...</p>
+        <div className="game-intro">
+          <h1>Pokémon Memory Game</h1>
+          <p className="game-instructions">Instructions...</p>
+        </div>
 
         <Scoreboard currentScore={clickedIds.length} bestScore={bestScore} />
       </header>
