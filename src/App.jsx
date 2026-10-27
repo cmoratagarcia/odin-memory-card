@@ -10,6 +10,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [clickedIds, setClickedIds] = useState([]);
   const [bestScore, setBestScore] = useState(0);
+  const [hasWon, setHasWon] = useState(false);
 
   useEffect(() => {
     const promises = [];
@@ -36,16 +37,26 @@ function App() {
   }, []);
 
   function handleClick(id) {
+    if (hasWon) return;
     if (clickedIds.includes(id)) {
       setClickedIds([]);
     } else {
       const updatedIds = [...clickedIds, id];
-
       setClickedIds(updatedIds);
+
       if (updatedIds.length > bestScore) {
         setBestScore(updatedIds.length);
       }
+      if (updatedIds.length === cards.length) {
+        setHasWon(true);
+      }
     }
+    setCards(shuffle(cards));
+  }
+
+  function handlePlayAgain() {
+    setClickedIds([]);
+    setHasWon(false);
     setCards(shuffle(cards));
   }
 
@@ -59,17 +70,24 @@ function App() {
   ));
 
   return (
-    <main className="game">
-      <header className="game-header">
-        <div className="game-intro">
-          <h1>Pokémon Memory Game</h1>
-          <p className="game-instructions">Instructions...</p>
-        </div>
+    <>
+      <main className="game">
+        <header className="game-header">
+          <div className="game-intro">
+            <h1>Pokémon Memory Game</h1>
+            <p className="game-instructions">Instructions...</p>
+          </div>
 
-        <Scoreboard currentScore={clickedIds.length} bestScore={bestScore} />
-      </header>
-      <section className="cards-container">{cardElements}</section>
-    </main>
+          <Scoreboard currentScore={clickedIds.length} bestScore={bestScore} />
+        </header>
+        <section className="cards-container">{cardElements}</section>
+      </main>
+      {hasWon && (
+        <dialog open>
+          You won!'<button onClick={handlePlayAgain}>Play Again!</button>
+        </dialog>
+      )}
+    </>
   );
 }
 
