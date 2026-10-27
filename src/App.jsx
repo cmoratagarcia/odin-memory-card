@@ -4,7 +4,7 @@ import Card from "./Card";
 import Scoreboard from "./Scoreboard";
 import "./App.css";
 
-const CARD_COUNT = 12;
+const CARD_COUNT = 16;
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -75,7 +75,10 @@ function App() {
         <header className="game-header">
           <div className="game-intro">
             <h1>Pokémon Memory Game</h1>
-            <p className="game-instructions">Instructions...</p>
+            <p className="game-instructions">
+              Click each Pokémon once to earn a point, but if you click the same
+              one twice your score will reset!
+            </p>
           </div>
 
           <Scoreboard currentScore={clickedIds.length} bestScore={bestScore} />
@@ -84,7 +87,7 @@ function App() {
       </main>
       {hasWon && (
         <dialog open>
-          You won!'<button onClick={handlePlayAgain}>Play Again!</button>
+          You won!<button onClick={handlePlayAgain}>Play Again!</button>
         </dialog>
       )}
     </>
